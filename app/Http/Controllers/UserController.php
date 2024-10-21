@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -77,5 +78,20 @@ class UserController extends Controller
             'status' => true,
             'message' => 'Logout successful',
         ]);
+    }
+
+     // Método para validar o token
+    public function validateToken(Request $request)
+    {
+
+        if (Auth::check()) {
+            return response()->json([
+                'message' => 'Token válido',
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Token inválido ou expirado',
+        ], 401);
     }
 }

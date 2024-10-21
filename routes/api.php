@@ -9,6 +9,7 @@ use App\Http\Controllers\SubcategoryController;
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/validate-token', [UserController::class, 'validateToken']);
 
 // Essas rotas exigem autenticação
 Route::middleware('auth:sanctum')->group(function () {
