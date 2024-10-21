@@ -19,6 +19,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Lista todas as categorias de um usuário
     Route::get('/categorys', [CategoryController::class, 'index']);
 
+    // Lista todas as categorias e subcategorias de um usuário
+    Route::get('/categorys_sub', [CategoryController::class, 'getCategoriesWithSubcategories']);
+
     // Cria nova categoria
     Route::post('/categorys', [CategoryController::class, 'store']);
 

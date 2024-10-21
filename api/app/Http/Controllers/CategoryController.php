@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -61,4 +62,33 @@ class CategoryController extends Controller
 
         return response()->json(['message' => 'Categoria deletada com sucesso'], 200);
     }
+
+public function getCategoriesWithSubcategories(Request $request)
+    {
+    // Obtém o ID do usuário autenticado
+    $userId =  auth()->user()->id_user;
+
+    // Consulta SQL explícita para buscar categorias e subcategorias do usuário
+    $categories = DB::select("
+        SELECT c.id_category, c.name,c.description,
+               (SELECT JSON_ARRAYAGG(JSON_OBJECT('id', s.id_subcategory, 'name', s.name))
+                FROM subcategorys s
+                WHERE s.id_category = c.id_category) AS subcat
+        FROM categorys c
+        WHERE c.id_user = ?
+    ", [$userId]);
+
+    // Decodifica o JSON das subcategorias e retorna os dados
+    $result = array_map(function($category) {
+        // Decodifica a string JSON para um array
+         $category->subcat = $category->subcat ? json_decode($category->subcat) : [];
+
+        return $category;
+    }, $categories);
+
+
+    // Retorna os dados em formato JSON
+    return response()->json($result);
+    }
+
 }
