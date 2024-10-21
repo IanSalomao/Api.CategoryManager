@@ -1,4 +1,3 @@
-# Api.CategoryManager
 
 <p align="center"><a href="https://categorymanage.salomao.dev.br" target="_blank"><img src="https://github.com/IanSalomao/CategoryManager/blob/main/src/assets/logo.png" width="400" alt="Logo"></a></p>
 
