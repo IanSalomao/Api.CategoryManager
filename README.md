@@ -1,4 +1,3 @@
-
 <p align="center"><a href="https://categorymanage.salomao.dev.br" target="_blank"><img src="https://github.com/IanSalomao/CategoryManager/blob/main/src/assets/logo.png" width="400" alt="Logo"></a></p>
 
 ## Sobre o Projeto
@@ -19,7 +18,7 @@ Esse projeto se trata da do backend de uma aplicação desenvolvida para gerenci
 
 Confira a demonstração do projeto <a  href="https://categorymanage.salomao.dev.br">clicando aqui.</a>
 
-## Como Usar
+## Instalação
 
 Para utilizar a API do CategoryManager, é nescesário ter configurado o php e o composer já configurados na sua máquina.
 
